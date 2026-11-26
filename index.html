@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voronoi Treegraph Maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <!-- LEFT: data entry -->
+  <section class="panel data-panel">
+    <header class="panel-head">
+      <h1>Voronoi Treegraph Maker</h1>
+      <p class="hint">Enter up to 3 levels. Leave Level 2/3 blank for shallower branches. Paste rows straight from a spreadsheet (Level 1 · Level 2 · Level 3 · Value).</p>
+    </header>
+
+    <div class="table-wrap">
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Level 1</th>
+            <th>Level 2</th>
+            <th>Level 3</th>
+            <th class="num">Value</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="row-actions">
+      <button id="add-row" type="button">+ Add row</button>
+      <button id="sample" type="button">Load sample</button>
+      <button id="clear" type="button" class="ghost">Clear all</button>
+    </div>
+
+    <div class="options">
+      <label>Palette
+        <select id="palette">
+          <option value="vivid">Vivid</option>
+          <option value="pastel">Pastel</option>
+          <option value="ocean">Ocean</option>
+          <option value="sunset">Sunset</option>
+          <option value="forest">Forest</option>
+          <option value="rainbow">Rainbow</option>
+          <option value="mono">Monochrome</option>
+        </select>
+      </label>
+      <label>Labels
+        <select id="labels">
+          <option value="leaf">Deepest level</option>
+          <option value="top">Level 1 only</option>
+          <option value="both">Level 1 (around rim) + deepest</option>
+          <option value="none">None</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="show-values"> Show values</label>
+    </div>
+
+    <div class="generate-bar">
+      <button id="generate" type="button" class="primary">Generate</button>
+      <button id="reshuffle" type="button" title="Same data, new cell arrangement">↻ New layout</button>
+      <span id="status" class="status"></span>
+    </div>
+  </section>
+
+  <!-- RIGHT: graph -->
+  <section class="panel graph-panel">
+    <div class="graph-tools">
+      <button id="dl-svg" type="button">Download SVG</button>
+      <button id="dl-png" type="button">Download PNG</button>
+    </div>
+    <div id="chart"></div>
+    <div id="tooltip" class="tooltip" hidden></div>
+  </section>
+</main>
+
+<script src="lib/d3.min.js"></script>
+<script src="lib/d3-weighted-voronoi.min.js"></script>
+<script src="lib/d3-voronoi-map.min.js"></script>
+<script src="lib/d3-voronoi-treemap.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
